@@ -33,7 +33,7 @@ void processMsg(char* msg)
   Serial.print("Processing message: ");
   Serial.println(msg);
 
-  char letter1 = msg[0];
+  char letter = msg[0];
 
   if (letter != '\0')
   {
