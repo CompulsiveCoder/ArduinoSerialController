@@ -1,0 +1,9 @@
+sudo: required
+
+language: python
+
+install:
+  - sudo sh prepare.sh
+
+script:
+  - sh build.sh
