@@ -3,7 +3,6 @@
 
 const int MAX_MSG_LENGTH = 10;
 
-
 bool checkMsgReady();
 
 byte* getMsg();

@@ -4,7 +4,7 @@
 const char identifyRequest = 'I';
 const char* identifyResponse = "duinocom";
 
-bool verboseCom = true;
+bool verboseCom = false;
 
 bool isMsgReady = false;
 int msgPosition = 0;
@@ -82,7 +82,8 @@ bool checkMsgReady()
     if (isMsgReady)
     {
       char firstCharacter = char(msgBuffer[0]);
-      Serial.println(char(firstCharacter));
+      if (verboseCom)
+        Serial.println(char(firstCharacter));
 
       if (firstCharacter == identifyRequest)
       {
