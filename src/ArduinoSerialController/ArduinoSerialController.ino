@@ -53,10 +53,13 @@ void processMsg(char* msg)
 
         int value = getValue(msg);
 
-        Serial.print("Pin number: ");
-        Serial.println(pinNumber);
-        Serial.print("Value: ");
-        Serial.println(value);
+        if (isDebugMode)
+        {
+          Serial.print("Pin number: ");
+          Serial.println(pinNumber);
+          Serial.print("Value: ");
+          Serial.println(value);
+        }
 
         pinMode(pinNumber, OUTPUT);
         digitalWrite(pinNumber, value);
@@ -76,10 +79,14 @@ void processMsg(char* msg)
       else
       {
         int value = getValue(msg);
-        Serial.print("Pin number: ");
-        Serial.println(pinNumber);
-        Serial.print("Value: ");
-        Serial.println(value);
+
+        if (isDebugMode)
+        {
+          Serial.print("Pin number: ");
+          Serial.println(pinNumber);
+          Serial.print("Value: ");
+          Serial.println(value);
+        }
 
         pinMode(pinNumber, OUTPUT);
         analogWrite(pinNumber, value);
@@ -87,7 +94,10 @@ void processMsg(char* msg)
     }
     else
     {
-      Serial.println("Invalid command");
+      if (isDebugMode)
+      {
+        Serial.println("Invalid command");
+      }
     }
   }
 
