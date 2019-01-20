@@ -42,6 +42,9 @@ void processMsg(char* msg)
       {
         if (isDebugMode)
           Serial.println("Is read command");
+          
+        pinMode(pinNumber, INPUT);
+        digitalWrite(pinNumber, LOW);
 
         Serial.println(digitalRead(pinNumber));
       }
