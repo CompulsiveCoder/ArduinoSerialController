@@ -42,6 +42,30 @@ pipeline {
                 sh 'sh build.sh'
             }
         }
+        stage('Clean') {
+            when { expression { !shouldSkipBuild() } }
+            steps {
+                sh 'sh clean.sh'
+            }
+        }
+        stage('Graduate') {
+            when { expression { !shouldSkipBuild() } }
+            steps {
+                sh 'sh graduate.sh'
+            }
+        }
+        stage('Increment Version') {
+            when { expression { !shouldSkipBuild() } }
+            steps {
+              sh 'sh increment-version.sh'
+            }
+        }
+        stage('Push Version') {
+            when { expression { !shouldSkipBuild() } }
+            steps {
+                sh 'sh push-version.sh'
+            }
+        }
     }
     post {
         success() {
