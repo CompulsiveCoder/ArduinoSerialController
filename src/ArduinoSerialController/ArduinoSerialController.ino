@@ -3,6 +3,12 @@
 
 bool isDebugMode = false;
 
+#define PIN_MODE_COMMAND_OUTPUT 0
+#define PIN_MODE_COMMAND_INPUT 1
+#define PIN_MODE_COMMAND_INPUT_PULLUP 2
+//#define PIN_MODE_COMMAND_INPUT_PULLDOWN 3
+
+
 void setup() {
   Serial.begin(9600);
 
@@ -46,38 +52,34 @@ void processMsg(char* msg)
       Serial.println("Value:");
       Serial.println(value);
       
-      if (value == 0)
+      if (value == PIN_MODE_COMMAND_OUTPUT)
       {
         Serial.print("Setting pin ");
         Serial.print(pinNumber);
         Serial.println(" mode to OUTPUT.");
         pinMode(pinNumber, OUTPUT);
       }
-      else
+      else if (value == PIN_MODE_COMMAND_INPUT)
       {
         Serial.print("Setting pin ");
         Serial.print(pinNumber);
         Serial.println(" mode to INPUT.");
         pinMode(pinNumber, INPUT);
       }
-    }
-    else if (letter == byte('U'))
-    {
-      int pinNumber = getPinNumber(msg);
-      
-      Serial.print("Enabling pull up resistor for pin ");
-      Serial.println(pinNumber);
-      
-      pinMode(pinNumber, INPUT_PULLUP);
-    }
-    else if (letter == byte('E'))
-    {
-      int pinNumber = getPinNumber(msg);
-      
-      Serial.print("Enabling pull down resistor for pin ");
-      Serial.println(pinNumber);
-      
-      pinMode(pinNumber, INPUT_PULLUP);
+      else if (value == PIN_MODE_COMMAND_INPUT_PULLUP)
+      {
+        Serial.print("Setting pin ");
+        Serial.print(pinNumber);
+        Serial.println(" mode to INPUT_PULLUP.");
+        pinMode(pinNumber, INPUT_PULLUP);
+      }
+      /*else if (value == PIN_MODE_COMMAND_INPUT_PULLDOWN)
+      {
+        Serial.print("Setting pin ");
+        Serial.print(pinNumber);
+        Serial.println(" mode to INPUT_PULLDOWN.");
+        pinMode(pinNumber, INPUT_PULLDOWN);
+      }*/
     }
     else if (letter == byte('D'))
     {
