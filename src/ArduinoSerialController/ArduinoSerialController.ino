@@ -8,6 +8,7 @@ bool isDebugMode = false;
 #define PIN_MODE_COMMAND_INPUT_PULLUP 2
 //#define PIN_MODE_COMMAND_INPUT_PULLDOWN 3
 
+#define VERSION "1-0-0-0"
 
 void setup() {
   Serial.begin(9600);
