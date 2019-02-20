@@ -34,7 +34,52 @@ void processMsg(char* msg)
 
   if (letter != '\0')
   {
-    if (letter == byte('D'))
+    if (letter == byte('M'))
+    {
+      int pinNumber = getPinNumber(msg);
+
+      Serial.println("Pin number:");
+      Serial.println(pinNumber);
+      
+      int value = getValue(msg);
+
+      Serial.println("Value:");
+      Serial.println(value);
+      
+      if (value == 0)
+      {
+        Serial.print("Setting pin ");
+        Serial.print(pinNumber);
+        Serial.println(" mode to OUTPUT.");
+        pinMode(pinNumber, OUTPUT);
+      }
+      else
+      {
+        Serial.print("Setting pin ");
+        Serial.print(pinNumber);
+        Serial.println(" mode to INPUT.");
+        pinMode(pinNumber, INPUT);
+      }
+    }
+    else if (letter == byte('U'))
+    {
+      int pinNumber = getPinNumber(msg);
+      
+      Serial.print("Enabling pull up resistor for pin ");
+      Serial.println(pinNumber);
+      
+      pinMode(pinNumber, INPUT_PULLUP);
+    }
+    else if (letter == byte('E'))
+    {
+      int pinNumber = getPinNumber(msg);
+      
+      Serial.print("Enabling pull down resistor for pin ");
+      Serial.println(pinNumber);
+      
+      pinMode(pinNumber, INPUT_PULLUP);
+    }
+    else if (letter == byte('D'))
     {
       int pinNumber = getPinNumber(msg);
 
@@ -136,8 +181,13 @@ int getPinNumber(char* msg)
   }
 
   int colonPosition = getColonPosition(msg);
-
-  int numberLength = colonPosition -1;
+  
+  int numberLength = 0;
+  
+  if (colonPosition > 0)
+    numberLength = colonPosition -1;
+  else
+    numberLength = strlen(msg);
 
   int outputPin = readInt(msg, 1, numberLength);
 
