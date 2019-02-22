@@ -16,6 +16,8 @@ void setup() {
   while (!Serial) {
     ; // wait for serial port to connect. Needed for Leonardo only
   }
+  
+  Serial.println("ArduinoSerialController");
 }
 
 void loop() {
