@@ -47,33 +47,48 @@ void processMsg(char* msg)
     {
       int pinNumber = getPinNumber(msg);
 
-      Serial.println("Pin number:");
-      Serial.println(pinNumber);
+      if (isDebugMode)
+      {
+        Serial.println("Pin number:");
+        Serial.println(pinNumber);
+      }
       
       int value = getValue(msg);
 
-      Serial.println("Value:");
-      Serial.println(value);
+      if (isDebugMode)
+      {
+        Serial.println("Value:");
+        Serial.println(value);
+      }
       
       if (value == PIN_MODE_COMMAND_OUTPUT)
       {
-        Serial.print("Setting pin ");
-        Serial.print(pinNumber);
-        Serial.println(" mode to OUTPUT.");
+        if (isDebugMode)
+        {
+          Serial.print("Setting pin ");
+          Serial.print(pinNumber);
+          Serial.println(" mode to OUTPUT.");
+        }
         pinMode(pinNumber, OUTPUT);
       }
       else if (value == PIN_MODE_COMMAND_INPUT)
       {
-        Serial.print("Setting pin ");
-        Serial.print(pinNumber);
-        Serial.println(" mode to INPUT.");
-        pinMode(pinNumber, INPUT);
+        if (isDebugMode)
+        {
+          Serial.print("Setting pin ");
+          Serial.print(pinNumber);
+          Serial.println(" mode to INPUT.");
+          pinMode(pinNumber, INPUT);
+        }
       }
       else if (value == PIN_MODE_COMMAND_INPUT_PULLUP)
       {
-        Serial.print("Setting pin ");
-        Serial.print(pinNumber);
-        Serial.println(" mode to INPUT_PULLUP.");
+        if (isDebugMode)
+        {
+          Serial.print("Setting pin ");
+          Serial.print(pinNumber);
+          Serial.println(" mode to INPUT_PULLUP.");
+        }
         pinMode(pinNumber, INPUT_PULLUP);
       }
       /*else if (value == PIN_MODE_COMMAND_INPUT_PULLDOWN)
