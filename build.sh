@@ -1,2 +1,2 @@
 # pio run
-pio run --environment uno
+pio run -s --environment uno
