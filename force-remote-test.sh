@@ -6,7 +6,7 @@ if [ "$BRANCH" = "dev" ]
 then
   echo "Forcing remote test"
 
-  echo " " >> Jenkinsfile.hw
+  echo " " >> Jenkinsfile
   
   git pull origin dev && \
   git commit Jenkinsfile -m "Forcing retest" && \
